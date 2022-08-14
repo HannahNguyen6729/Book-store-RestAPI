@@ -17,9 +17,18 @@ const bookController = {
   },
   //Get all books
   getAllBooks: async (req, res) => {
-    const bookList = await Book.find();
-    res.status(200).json(bookList);
     try {
+      const bookList = await Book.find();
+      res.status(200).json(bookList);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+  //Get a book
+  getABook: async (req, res) => {
+    try {
+      const book = await Book.findById(req.params.id).populate("author");
+      res.status(200).json(book);
     } catch (err) {
       res.status(500).json(err);
     }
