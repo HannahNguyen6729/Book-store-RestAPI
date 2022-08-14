@@ -25,6 +25,7 @@ const authorSchema = new mongoose.Schema({
   },
   year: {
     type: Number,
+    required: true,
   },
   books: [{ type: mongoose.Schema.Types.ObjectId, ref: "Book" }],
 });
